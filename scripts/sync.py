@@ -47,8 +47,10 @@ def main() -> int:
     activities_to_frame(activities).to_csv(PROCESSED_DIR / "activities.csv", index=False)
     wellness_to_frame(wellness).to_csv(PROCESSED_DIR / "wellness.csv", index=False)
 
-    print(f"Synced {len(activities)} activities and {len(wellness)} wellness records "
-          f"({args.days} days).")
+    print(
+        f"Synced {len(activities)} activities and {len(wellness)} wellness records "
+        f"({args.days} days)."
+    )
     print(f"Raw JSON:  {raw_dir.relative_to(raw_dir.parents[2])}")
     print(f"CSV files: {PROCESSED_DIR.relative_to(PROCESSED_DIR.parents[1])}")
     return 0

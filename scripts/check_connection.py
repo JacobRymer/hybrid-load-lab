@@ -51,8 +51,10 @@ def main() -> int:
         print(f"Connection failed: {exc}")
         return 1
 
-    print(f"Connected. Last {DAYS} days: {len(activities)} activities, "
-          f"{len(wellness)} wellness records.")
+    print(
+        f"Connected. Last {DAYS} days: {len(activities)} activities, "
+        f"{len(wellness)} wellness records."
+    )
     report_fields("Activity", activities, FIELDS["activities"])
     report_fields("Wellness", wellness, FIELDS["wellness"])
     report_candidate_keys(activities)
