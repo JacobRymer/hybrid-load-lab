@@ -27,12 +27,13 @@ WEEKLY_PLAN = [
 
 
 def week_multiplier(week: int) -> float:
-    """Gradual build (+3% a week), a deload and a spike."""
+    """Gradual build (+3% a week), a deload week and a spike week."""
+    build = 1.0 + 0.03 * (week - 1)
     if week == DELOAD_WEEK:
         return 0.55
     if week == SPIKE_WEEK:
-        return 1.7
-    return 1.0 + 0.03 * (week - 1)
+        return build * 1.6
+    return build
 
 
 def make_demo_activities(seed: int = 42, weeks: int = WEEKS) -> pd.DataFrame:
