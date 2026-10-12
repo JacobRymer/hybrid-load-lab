@@ -1,0 +1,24 @@
+# Secrets
+.env
+
+# Personal training data (never commit)
+data/raw/
+data/processed/
+data/log/
+outputs/
+*.fit
+*.gpx
+*.tcx
+
+# Python
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints
+
+# Environments and editors
+.venv
+.vscode/
