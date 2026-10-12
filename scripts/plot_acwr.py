@@ -120,7 +120,7 @@ def build_figure(daily, ratios, title: str) -> go.Figure:
 def save(fig: go.Figure, out_dir: Path, stem: str) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     html_path = out_dir / f"{stem}.html"
-    fig.write_html(html_path, include_plotlyjs="cdn")
+    fig.write_html(html_path, include_plotlyjs="cdn", div_id=stem)  # stable id: clean diffs
     print(f"Saved {html_path.relative_to(PROJECT_ROOT)}")
 
     png_path = out_dir / f"{stem}.png"
