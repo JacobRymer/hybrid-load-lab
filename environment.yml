@@ -1,0 +1,19 @@
+name: hll
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pandas
+  - numpy
+  - plotly
+  - requests
+  - python-dotenv
+  - pyarrow
+  - pytest
+  - ruff
+  - ipykernel
+  - nbstripout
+  - pip
+  - pip:
+      - kaleido
+      - -e .
