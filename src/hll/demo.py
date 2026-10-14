@@ -37,7 +37,11 @@ def week_multiplier(week: int) -> float:
 
 
 def make_demo_activities(seed: int = 42, weeks: int = WEEKS) -> pd.DataFrame:
-    """Synthetic activities with the same columns as the processed CSV."""
+    """Synthetic activities with the same columns as the processed CSV.
+
+    Only id, start_date, name, type, load, avg_hr, rpe and notes are filled.
+    Every other column in ACTIVITY_COLUMNS is left empty (NaN).
+    """
     rng = np.random.default_rng(seed)
     start = pd.Timestamp(DEMO_START)
     rows = []
@@ -55,7 +59,6 @@ def make_demo_activities(seed: int = 42, weeks: int = WEEKS) -> pd.DataFrame:
                     "load": round(max(load * scale * noise, 5.0), 1),
                     "avg_hr": round(hr + rng.normal(0, 4)),
                     "rpe": int(np.clip(round(rpe + rng.normal(0, 1) + (scale - 1) * 2), 1, 10)),
-                    "avg_power": np.nan,
                     "notes": "",
                 }
             )

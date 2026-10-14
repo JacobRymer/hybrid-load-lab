@@ -26,7 +26,7 @@ Watch-based load and readiness scores are built mainly from heart rate (for exam
 | Reference metrics (daily metabolic load, A:C ratio, monotony/strain) with tests | Done |
 | Synthetic demo data and A:C chart | Done |
 | Daily and session log templates | Done |
-| Verifying `FIELDS` names against real API data | In progress |
+| Verifying `FIELDS` names against real API data | Done |
 | Real-data sync and local charts | In progress |
 | Session analysis notebook (time in zones, sRPE, TRIMP-based load) | In progress |
 | A:C, monotony and strain notebook | In progress |
@@ -42,7 +42,7 @@ Watch-based load and readiness scores are built mainly from heart rate (for exam
 
 ## Methods and evidence notes
 
-- **Daily metabolic load.** The HR/TRIMP-based training load per session from intervals.icu (`icu_training_load`, field name unverified), summed per calendar day, with rest days as zero. It reflects metabolic cost, not measured force or the mechanical load on the legs. <!-- TODO: cite source for intervals.icu training load calculation -->
+- **Daily metabolic load.** The HR/TRIMP-based training load per session from intervals.icu (`icu_training_load`), summed per calendar day, with rest days as zero. It reflects metabolic cost, not measured force or the mechanical load on the legs. <!-- TODO: cite source for intervals.icu training load calculation -->
 - **Mechanical load proxy (planned, unvalidated).** A second daily load built from running power (Stryd), elevation gain and descent, station volume from session notes, and legs RPE. It will be scaled against TRIMP-based load so the two loads are comparable, and validated against legs RPE. It is a proxy, not measured force. <!-- TODO: cite evidence for each input and the scaling method -->
 - **Acute:chronic (A:C) ratio.** The 7-day average load divided by the 28-day average load, using rolling averages and, as an alternative, exponentially weighted averages. It is used **descriptively**: it shows how the last week compares with the recent norm. It is not used as an injury-risk score. Values are left empty until 28 days of data exist. <!-- TODO: cite original A:C ratio work and the EWMA variant --> <!-- TODO: cite critiques of the A:C ratio -->
 - **Chart bands.** 0.8–1.3 is labelled "in line with recent norm" and above 1.3 "above recent norm". These are display conventions, not thresholds with a proven meaning for an individual. <!-- TODO: cite source for the 0.8-1.3 convention -->
@@ -54,7 +54,7 @@ Watch-based load and readiness scores are built mainly from heart rate (for exam
 - **A wrist watch cannot measure neuromuscular fatigue.** HR-based load reflects metabolic cost, not the mechanical load on the legs.
 - **n = 1.** This is a single-athlete project. Nothing here generalises to other people without proper study.
 - **Wrist heart rate under-reads on station work.** Optical HR is less reliable during sleds, carries and wall balls (grip, wrist flexion, short efforts), so HR-based load is likely to under-count those sessions. <!-- TODO: cite evidence on optical HR accuracy during resistance/station work -->
-- The `FIELDS` mapping to intervals.icu field names is not yet verified against real data.
+- The `FIELDS` mapping has been checked against my own intervals.icu data. Field names or availability may differ for other accounts and devices (for example, running dynamics need a compatible sensor).
 - Rule-based guidance will be a set of personal heuristics, not medical or coaching advice.
 
 ## Roadmap

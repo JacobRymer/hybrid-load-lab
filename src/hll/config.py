@@ -24,17 +24,31 @@ DOCS_IMG_DIR = PROJECT_ROOT / "docs" / "img"
 REQUIRED_VARS = ("INTERVALS_API_KEY", "ATHLETE_ID")
 
 # Logical name -> intervals.icu field name.
-# UNVERIFIED: these are best guesses. Run scripts/check_connection.py to see
-# which fields are present in your data, then correct them here.
+# Checked against real data with scripts/check_connection.py. Re-run it if a
+# column comes back empty after a sync.
 FIELDS = {
     "activities": {
         "start_date": "start_date_local",
         "name": "name",
         "type": "type",
         "load": "icu_training_load",
+        "trimp": "trimp",
+        "hr_load": "hr_load",
+        "hr_load_type": "hr_load_type",
+        "moving_s": "moving_time",
+        "elapsed_s": "elapsed_time",
         "avg_hr": "average_heartrate",
+        "max_hr": "max_heartrate",
         "rpe": "icu_rpe",
-        "avg_power": "icu_average_watts",
+        "feel": "feel",
+        "hr_zone_times": "icu_hr_zone_times",  # a list per activity
+        "hr_zones": "icu_hr_zones",  # a list per activity
+        "distance": "distance",
+        "elev_gain": "total_elevation_gain",
+        "elev_loss": "total_elevation_loss",
+        "cadence": "average_cadence",
+        "stance_time": "average_stance_time",
+        "stride": "average_stride",
         "notes": "description",
     },
     "wellness": {
@@ -43,6 +57,13 @@ FIELDS = {
         "sleep_secs": "sleepSecs",
         "ctl": "ctl",
         "atl": "atl",
+        "soreness": "soreness",
+        "fatigue": "fatigue",
+        "motivation": "motivation",
+        "mood": "mood",
+        "stress": "stress",
+        "sleep_quality": "sleepQuality",
+        "sleep_score": "sleepScore",
     },
 }
 
