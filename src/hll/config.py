@@ -31,8 +31,8 @@ FIELDS = {
         "start_date": "start_date_local",
         "name": "name",
         "type": "type",
-        "load": "icu_training_load",
-        "trimp": "trimp",
+        "load": "trimp",  # daily metabolic load: intervals.icu TRIMP (HR-based)
+        "icu_load": "icu_training_load",  # intervals.icu's own load, for comparison only
         "hr_load": "hr_load",
         "hr_load_type": "hr_load_type",
         "moving_s": "moving_time",

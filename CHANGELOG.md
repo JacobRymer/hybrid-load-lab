@@ -20,4 +20,5 @@ All notable changes to this project are listed here.
 - `check_connection.py` lists all wellness keys and more activity key candidates (names and counts only).
 - nbstripout attributes committed in `.gitattributes`; `notebooks/README.md` sets the rules for notebooks.
 - `FIELDS` checked against real data: added TRIMP, HR load, moving/elapsed time, max HR, feel, HR zone times, distance, elevation gain/loss and running dynamics; added subjective wellness fields (soreness, fatigue, motivation, mood, stress, sleep quality and score); removed `avg_power` (always empty). Demo data has the same columns.
+- Metabolic load switched to intervals.icu's TRIMP (HR-based), the `trimp` field, stored as `load`. `icu_training_load` (intervals.icu's own HRSS-based load, which can use a different source on some sessions) is kept as `icu_load` for comparison only.
 - Publishing policy: data stays local; charts from real data are published only when copied into `docs/img/` by hand.

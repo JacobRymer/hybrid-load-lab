@@ -132,5 +132,8 @@ def test_demo_data_matches_processed_columns_and_is_reproducible():
     second = make_demo_activities(seed=1)
     assert list(first.columns) == ACTIVITY_COLUMNS
     pd.testing.assert_frame_equal(first, second)
+    # "load" is the metabolic load (TRIMP); icu_load is comparison-only and empty in the demo.
+    assert first["load"].notna().all()
+    assert first["icu_load"].isna().all()
     days = daily_load(first)
     assert len(days) >= 16 * 7 - 7  # roughly 16 weeks

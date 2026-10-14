@@ -1,9 +1,11 @@
 """Reference training-load metrics.
 
 All functions take a daily load series: one value per calendar day, rest
-days as 0 (see ``daily_load``). "Load" here is daily metabolic load: the
-HR/TRIMP-based training load from intervals.icu (icu_training_load). It
-reflects metabolic cost, not measured force or neuromuscular fatigue.
+days as 0 (see ``daily_load``). "Load" here is daily metabolic load:
+intervals.icu's TRIMP (HR-based), the ``trimp`` field, which ingest stores in
+the ``load`` column. It reflects metabolic cost, not measured force or
+neuromuscular fatigue. intervals.icu's own HRSS-based load
+(``icu_training_load``) is kept separately as ``icu_load`` for comparison.
 
 The acute:chronic (A:C) ratio is descriptive: it shows how the last week
 compares with the recent norm. It is not an injury-risk score.
