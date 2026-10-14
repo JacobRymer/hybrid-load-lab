@@ -17,3 +17,4 @@ All notable changes to this project are listed here.
 - Terms aligned: "metabolic load" for HR/TRIMP-based watch load, "mechanical load proxy" for the planned second load built from power, elevation, station volume and legs RPE.
 - intervals.icu is now the primary data source; synthetic data is for tests and the no-account demo only.
 - `plot_acwr.py` uses real data by default and exits with a message if none exists, instead of silently falling back to demo data.
+- `check_connection.py` lists all wellness keys and more activity key candidates (names and counts only).

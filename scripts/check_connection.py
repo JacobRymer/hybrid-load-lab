@@ -1,6 +1,7 @@
 """Check the intervals.icu connection and which FIELDS exist in your data.
 
-Pulls the last 30 days and prints counts only: no values, names or notes.
+Pulls the last 30 days and prints key names and counts only: never values,
+activity names or note text.
 
     python scripts/check_connection.py
 """
@@ -12,7 +13,13 @@ from hll.client import IntervalsAPIError, IntervalsClient
 from hll.config import FIELDS, ConfigError, load_settings
 
 DAYS = 30
-HINT_WORDS = ("rpe", "watts", "power", "desc", "feel")
+# Substrings used to find candidate activity keys (case-insensitive).
+# Short words such as "hr" also match unrelated keys; that is fine for discovery.
+HINT_WORDS = (
+    "rpe", "watts", "power", "desc", "feel",
+    "time", "zone", "trimp", "load", "hr", "heart", "elev",
+    "distance", "cadence", "stride", "lap", "interval",
+)  # fmt: skip
 
 
 def report_fields(label: str, records: list[dict], fields: dict) -> None:
@@ -24,14 +31,25 @@ def report_fields(label: str, records: list[dict], fields: dict) -> None:
         print(f"  {name:<12} -> {api_name:<22} {status:<8} non-null: {non_null}")
 
 
-def report_candidate_keys(records: list[dict]) -> None:
-    keys = sorted({k for r in records for k in r if any(w in k.lower() for w in HINT_WORDS)})
-    print(f"\nActivity keys containing {', '.join(HINT_WORDS)}:")
+def print_key_counts(keys: list[str], records: list[dict]) -> None:
+    """Print each key with its non-null count. Never prints values."""
     if not keys:
         print("  (none found)")
     for key in keys:
         non_null = sum(r.get(key) is not None for r in records)
         print(f"  {key:<34} non-null: {non_null}")
+
+
+def report_candidate_keys(records: list[dict]) -> None:
+    keys = sorted({k for r in records for k in r if any(w in k.lower() for w in HINT_WORDS)})
+    print(f"\nActivity keys containing {', '.join(HINT_WORDS)}:")
+    print_key_counts(keys, records)
+
+
+def report_all_keys(label: str, records: list[dict]) -> None:
+    keys = sorted({k for r in records for k in r})
+    print(f"\nAll {label} keys:")
+    print_key_counts(keys, records)
 
 
 def main() -> int:
@@ -58,6 +76,7 @@ def main() -> int:
     report_fields("Activity", activities, FIELDS["activities"])
     report_fields("Wellness", wellness, FIELDS["wellness"])
     report_candidate_keys(activities)
+    report_all_keys("wellness", wellness)
 
     notes_field = FIELDS["activities"]["notes"]
     has_notes = any(r.get(notes_field) for r in activities)
