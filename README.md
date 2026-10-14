@@ -4,8 +4,7 @@ As a competitive hybrid athlete training upwards of 15 hours per week, I often f
 
 **Status: v0.1, in development.** The main data source is my own intervals.icu account (activities and wellness via the API). The data itself stays local and is never committed; only charts I have chosen to publish appear in this repo. Synthetic data is used only for tests and for a demo that runs without an account.
 
-<!-- TODO: add CI status badge once the repo URL is final -->
-
+[![tests](https://github.com/JacobRymer/hybrid-load-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/JacobRymer/hybrid-load-lab/actions/workflows/tests.yml)
 ## The problem
 
 Watch-based load and readiness scores are built mainly from heart rate (for example TRIMP-style training load). They do not capture mechanical load: a sled push, a set of walking lunges, wall balls and an easy run can produce similar heart-rate numbers but very different mechanical demands. They also ignore subjective inputs such as energy, motivation and soreness. For hybrid and HYROX training, where running and strength-endurance stations are mixed in the same week, that gap matters.
