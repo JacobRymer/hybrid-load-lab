@@ -1,10 +1,10 @@
-"""Plot daily load and the rolling acute:chronic (A:C) ratio.
+"""Plot daily metabolic load (HR-based) and the rolling acute:chronic (A:C) ratio.
 
+    python scripts/plot_acwr.py          # your data      -> outputs/  (git-ignored)
     python scripts/plot_acwr.py --demo   # synthetic data -> docs/img/ (committed)
-    python scripts/plot_acwr.py --real   # your data      -> outputs/  (git-ignored)
 
-With no flag, real data is used if data/processed/activities.csv exists,
-otherwise the synthetic demo.
+Real data comes from data/processed/activities.csv (written by scripts/sync.py).
+There is no automatic fallback to demo data.
 """
 
 import argparse
@@ -32,10 +32,12 @@ NORM_LOW, NORM_HIGH = 0.8, 1.3
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Plot daily load and the A:C ratio.")
+    parser = argparse.ArgumentParser(description="Plot daily metabolic load and the A:C ratio.")
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--demo", action="store_true", help="use synthetic demo data")
-    mode.add_argument("--real", action="store_true", help="use data/processed/activities.csv")
+    mode.add_argument(
+        "--real", action="store_true", help="use data/processed/activities.csv (default)"
+    )
     return parser.parse_args()
 
 
@@ -46,11 +48,17 @@ def build_figure(daily, ratios, title: str) -> go.Figure:
         shared_xaxes=True,
         row_heights=[0.6, 0.4],
         vertical_spacing=0.06,
-        subplot_titles=("Daily load (mechanical load proxy)", "Acute:chronic ratio (7 / 28 days)"),
+        subplot_titles=("Daily metabolic load (HR-based)", "Acute:chronic ratio (7 / 28 days)"),
     )
 
     fig.add_trace(
-        go.Bar(x=daily.index, y=daily, name="Daily load", marker_color=BAR_COLOUR, opacity=0.45),
+        go.Bar(
+            x=daily.index,
+            y=daily,
+            name="Daily metabolic load",
+            marker_color=BAR_COLOUR,
+            opacity=0.45,
+        ),
         row=1,
         col=1,
     )
@@ -133,18 +141,16 @@ def save(fig: go.Figure, out_dir: Path, stem: str) -> None:
 
 def main() -> int:
     args = parse_args()
-    use_demo = args.demo or (not args.real and not ACTIVITIES_CSV.exists())
-
-    if use_demo:
+    if args.demo:
         activities = make_demo_activities()
-        title = "Synthetic demo data: daily load and A:C ratio"
+        title = "Synthetic demo data: daily metabolic load and A:C ratio"
         out_dir, stem = DOCS_IMG_DIR, "acwr_demo"
     else:
         if not ACTIVITIES_CSV.exists():
-            print("No processed data found. Run scripts/sync.py first, or use --demo.")
+            print("No real data yet: run scripts/sync.py, or pass --demo")
             return 1
         activities = load_activities_csv(ACTIVITIES_CSV)
-        title = "Daily load and A:C ratio"
+        title = "Daily metabolic load and A:C ratio"
         out_dir, stem = OUTPUTS_DIR, "acwr"
 
     daily = daily_load(activities)

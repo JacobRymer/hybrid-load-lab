@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "hll"
 version = "0.1.0"
-description = "Comparing watch-based training load with leg-specific and subjective data for hybrid and HYROX athletes."
+description = "Comparing watch-based (metabolic) training load with a mechanical load proxy and subjective data for hybrid and HYROX athletes."
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.11"

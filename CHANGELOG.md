@@ -12,3 +12,8 @@ All notable changes to this project are listed here.
 - Seeded synthetic demo data and `scripts/plot_acwr.py` demo chart.
 - Daily and session log templates for subjective inputs.
 - GitHub Actions workflow running ruff and pytest.
+
+### Changed
+- Terms aligned: "metabolic load" for HR/TRIMP-based watch load, "mechanical load proxy" for the planned second load built from power, elevation, station volume and legs RPE.
+- intervals.icu is now the primary data source; synthetic data is for tests and the no-account demo only.
+- `plot_acwr.py` uses real data by default and exits with a message if none exists, instead of silently falling back to demo data.

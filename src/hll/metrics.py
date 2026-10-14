@@ -1,9 +1,9 @@
 """Reference training-load metrics.
 
 All functions take a daily load series: one value per calendar day, rest
-days as 0 (see ``daily_load``). "Load" here is the watch-derived number
-(e.g. intervals.icu training load), i.e. a heart-rate-based mechanical load
-proxy, not a measure of neuromuscular fatigue.
+days as 0 (see ``daily_load``). "Load" here is daily metabolic load: the
+HR/TRIMP-based training load from intervals.icu (icu_training_load). It
+reflects metabolic cost, not measured force or neuromuscular fatigue.
 
 The acute:chronic (A:C) ratio is descriptive: it shows how the last week
 compares with the recent norm. It is not an injury-risk score.
