@@ -19,3 +19,4 @@ All notable changes to this project are listed here.
 - `plot_acwr.py` uses real data by default and exits with a message if none exists, instead of silently falling back to demo data.
 - `check_connection.py` lists all wellness keys and more activity key candidates (names and counts only).
 - nbstripout attributes committed in `.gitattributes`; `notebooks/README.md` sets the rules for notebooks.
+- Publishing policy: data stays local; charts from real data are published only when copied into `docs/img/` by hand.

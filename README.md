@@ -2,7 +2,7 @@
 
 Comparing what a sports watch says about training load and readiness with how a hybrid/HYROX athlete's legs actually feel.
 
-**Status: v0.1, in development.** The main data source is my own intervals.icu account (activities and wellness via the API). Real data stays local and is never committed. Synthetic data is used only for tests and for a demo that runs without an account.
+**Status: v0.1, in development.** The main data source is my own intervals.icu account (activities and wellness via the API). The data itself stays local and is never committed; only charts I have chosen to publish appear in this repo. Synthetic data is used only for tests and for a demo that runs without an account.
 
 <!-- TODO: add CI status badge once the repo URL is final -->
 
@@ -91,7 +91,7 @@ Run the tests with `pytest` and the linter with `ruff check .`.
    ```
 
    Raw JSON lands in `data/raw/<date>/` and tidy tables in `data/processed/activities.csv` and `data/processed/wellness.csv`. Both folders are git-ignored.
-4. Plot your own A:C chart with `python scripts/plot_acwr.py`. It is written to `outputs/` (git-ignored).
+4. Plot your own A:C chart with `python scripts/plot_acwr.py`. It is written to `outputs/` (git-ignored). To publish a chart, copy it into `docs/img/` yourself.
 
 ## Notebooks
 
@@ -107,9 +107,10 @@ This uses synthetic data and writes `docs/img/acwr_demo.png` and `docs/img/acwr_
 
 ## Data and privacy
 
-- **Real data stays local.** API keys live in `.env`; downloaded data goes to `data/raw/` and `data/processed/`, personal logs to `data/log/`, and real charts only to `outputs/`. All of these are git-ignored, as are `.fit`, `.gpx` and `.tcx` files.
+- **Data stays local.** API keys live in `.env`; downloaded data goes to `data/raw/` and `data/processed/`, personal logs to `data/log/`, and charts are written to `outputs/`. All of these are git-ignored, as are `.fit`, `.gpx` and `.tcx` files.
+- **Only chosen charts are published.** A chart from my own data appears in `docs/img/` only after I have reviewed it and copied it there by hand. Published charts may show real dates; they never include raw data, GPS, activity names or notes.
 - **Notebook outputs are stripped before commit** by nbstripout, so real numbers and charts in notebooks are not published.
-- **Only synthetic data is published.** Charts in `docs/img/` and test fixtures are generated from synthetic data.
+- **Synthetic data for tests and the demo.** Test fixtures and charts named `*_demo` are generated from synthetic data and say so in their titles.
 - `check_connection.py` reports which fields exist and how many values they have; it never prints note text.
 
 ## Licence
