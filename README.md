@@ -1,6 +1,6 @@
 # hybrid-load-lab
 
-Comparing what a sports watch says about training load and readiness with how a hybrid/HYROX athlete's legs actually feel.
+As a competitive hybrid athlete training upwards of 15 hours per week, I often find training load and readiness data from my watch can disagree with how I actually feel, since it doesn't account for the neuromuscular cost of this training type. My aim is to build that better reflects the true strain of my type of training, and helps to improve session planning and race-readiness.
 
 **Status: v0.1, in development.** The main data source is my own intervals.icu account (activities and wellness via the API). The data itself stays local and is never committed; only charts I have chosen to publish appear in this repo. Synthetic data is used only for tests and for a demo that runs without an account.
 
