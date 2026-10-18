@@ -22,3 +22,6 @@ __pycache__/
 # Environments and editors
 .venv
 .vscode/
+
+# AI generated files
+notebooks/02_weekly_summary.ipynb
