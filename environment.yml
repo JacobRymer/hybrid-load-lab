@@ -5,6 +5,8 @@ dependencies:
   - python=3.11
   - pandas
   - numpy
+  - scikit-learn
+  - statsmodels
   - plotly
   - requests
   - python-dotenv
